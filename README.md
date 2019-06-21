@@ -24,3 +24,7 @@ tasks:
 ```
 
 ![Epic Equipment](pics/epic_equip.jpg)
+
+## Logbook
+
+Some log entries from my journey can be found in *LOGBOOK.md*.
