@@ -1,0 +1,8 @@
+---
+gcp_project: focus-dragon-244211
+gcp_cred_kind: serviceaccount
+gcp_cred_file: /home/manderson/focus-dragon-244211-ed4a61a3c066.json
+machine_type: f1-micro
+image: rhel-8
+region: us-central1
+zone: us-central1-a

@@ -1,0 +1,58 @@
+---
+- name: Create Google Cloud Platform instances
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+# Order of tasks is important here, e.g. gcp_compute_network before gcp_compute_firewall does not work
+  tasks:
+    - name: Delete firewall rule to allow SSH from anywhere (before gcp_compute_network)
+      gcp_compute_firewall:
+        name: allow-ssh
+        allowed:
+          - ip_protocol: tcp
+            ports: 22
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        service_account_file: "{{ gcp_cred_file }}"
+        state: absent
+
+    - name: Delete instances (before gcp_compute_network)
+      gcp_compute_instance:
+        name: test-vm
+        machine_type: "{{ machine_type }}"
+        zone: "{{ zone }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        service_account_file: "{{ gcp_cred_file }}"
+        state: absent
+
+    - name: Delete network
+      gcp_compute_network:
+        name: 'network-instance'
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        service_account_file: "{{ gcp_cred_file }}"
+        state: absent
+      register: network
+
+    - name: Delete address
+      gcp_compute_address:
+        name: 'address-instance'
+        region:  "{{ region }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        service_account_file: "{{ gcp_cred_file }}"
+        state: absent
+
+    - name: Delete disk
+      gcp_compute_disk:
+        name: 'disk-instance'
+        size_gb: 20
+        source_image: 'projects/rhel-cloud/global/images/family/rhel-8'
+        zone: "{{ zone }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        service_account_file: "{{ gcp_cred_file }}"
+        state: absent
+      register: disk
