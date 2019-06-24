@@ -6,3 +6,9 @@ machine_type: f1-micro
 image: rhel-8
 region: us-central1
 zone: us-central1-a
+
+# GKE vars
+gkename: expedition-cluster
+initial_node_count: 3
+npname: expedition-pool
+np_initial_node_count: 3

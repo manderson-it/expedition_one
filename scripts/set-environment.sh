@@ -1,0 +1,1 @@
+export GOOGLE_APPLICATION_CREDENTIALS="/home/manderson/focus-dragon-244211-ed4a61a3c066.json"

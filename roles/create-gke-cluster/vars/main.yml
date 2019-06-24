@@ -1,16 +1,14 @@
-# gke
+---
+# vars for GKE cluster creation
 gkename: expedition-cluster
-initial_node_count: 2
+initial_node_count: 3
 username: cluster_admin
 password: notasecret062019
-#machine_type: n1-standard-1
-#machine_type: f1-micro
+# g1-small seems to be the recommended minimum, see
+#   https://serverfault.com/questions/922851/gcp-f1-micro-instances-only-last-a-few-hours-before-being-replaced
+machine_type: g1-small
 disk_size_gb: 100
-#zone: 'us-central1-a'
-#project: focus-dragon-244211
-#auth_kind: serviceaccount
-#service_account_file: /home/manderson/focus-dragon-244211-ed4a61a3c066.json
 
-# gke node pool
+# vars for GKE node pool creation
 npname: expedition-pool
 np_initial_node_count: 3

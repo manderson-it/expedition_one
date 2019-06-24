@@ -1,0 +1,16 @@
+---
+- name: Applies k8s nginx deployment and service
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Apply deployment definition - nginx
+      k8s:
+        state: present
+        definition: "{{ lookup('file', '../kubernetes/deployments/nginx.yml') }}"
+
+    - name: Apply service definition - nginx
+      k8s:
+        definition: "{{ lookup('file', '../kubernetes/services/nginx.yml') }}"
+        state: present

@@ -1,0 +1,28 @@
+---
+- name: Deletes a GCP/GKE Cluster
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Delete a GCP/GKE cluster
+      gcp_container_cluster:
+        name: "{{ gkename }}"
+        initial_node_count: "{{ initial_node_count }}"
+        zone: "{{ zone }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        service_account_file: "{{ gcp_cred_file }}"
+        state: absent
+      register: cluster
+
+    - name: Delete a node pool
+      gcp_container_node_pool:
+        name: "{{ npname }}"
+        initial_node_count: "{{ np_initial_node_count }}"
+        cluster: "{{ cluster }}"
+        zone: "{{ zone }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        service_account_file: "{{ gcp_cred_file }}"
+        state: absent

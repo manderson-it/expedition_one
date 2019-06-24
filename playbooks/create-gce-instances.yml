@@ -1,5 +1,5 @@
 ---
-- name: Create Google Cloud Platform instances
+- name: Create Google Cloud Platform instance
   hosts: localhost
   connection: local
   gather_facts: no
@@ -71,6 +71,3 @@
 
     - name: Wait for SSH to come up
       wait_for: host={{ address.address }} port=22 delay=10 timeout=180
-
-    - name: Add host to groupname
-      add_host: hostname={{ address.address }} groupname=new_instances
