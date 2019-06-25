@@ -19,3 +19,10 @@ spec:
       containers:
       - name: "nginx"
         image: "nginx:latest"
+        volumeMounts:
+        - name: nginxstorage
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: nginxstorage
+        persistentVolumeClaim:
+          claimName: nginxvol
