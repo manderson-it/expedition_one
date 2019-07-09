@@ -5,9 +5,10 @@ metadata:
   name: nginxvol
   namespace: default
 spec:
-  storageClassName: manual
+  #storageClassName: manual
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany # so many nodes can mount it, still error with replicas: 3
+    #- ReadWriteOnce
   resources:
     requests:
       storage: 1Gi

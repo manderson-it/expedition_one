@@ -5,10 +5,10 @@
   gather_facts: no
 
   tasks:
-    - name: Apply persistent volume definition - nginx
-      k8s:
-        state: present
-        definition: "{{ lookup('file', '../kubernetes/persistent-volume/nginx.yml') }}"
+    # - name: Apply persistent volume definition - nginx
+    #   k8s:
+    #     state: present
+    #     definition: "{{ lookup('file', '../kubernetes/persistent-volume/nginx.yml') }}"
 
     - name: Apply persistent volume claim definition - nginx
       k8s:
